@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="primedocsConnect">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Template">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TagFilter">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element maxOccurs="unbounded" name="Tag" type="xs:string" />
+									</xs:sequence>
+									<xs:attribute name="AllowTemplatePicker" type="xs:boolean" use="optional" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Id" type="xs:string" use="optional" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DocumentLanguage">
+					<xs:complexType>
+						<xs:attribute name="Code" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Author">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Profile">
+								<xs:complexType>
+									<xs:attribute name="Id" type="xs:string" use="required" />
+									<xs:attribute name="ThemeId" type="xs:string" use="optional" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Forms">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="ValueElement" />
+							<xs:element minOccurs="0" maxOccurs="unbounded" name="Object" type="ObjectElement" />
+							<xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectCollection" type="ObjectCollectionElement" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Data">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="ValueElement" />
+							<xs:element minOccurs="0" maxOccurs="unbounded" name="Object" type="ObjectElement" />
+							<xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectCollection" type="ObjectCollectionElement" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Commands">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="OnSuccess">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="SaveAs" minOccurs="0" maxOccurs="1" type="CommandSaveAsElement" />
+										<xs:element name="DefaultProcess" minOccurs="0" maxOccurs="1" type="CommandDefaultProcessElement" />
+										<xs:element name="CreateConnectResult" minOccurs="0" maxOccurs="1" type="CommandCreateConnectResultElement" />
+										<xs:element name="ConvertToPdf" minOccurs="0" maxOccurs="1" type="CommandConvertToPdfElement" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OnError">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="SaveAs" minOccurs="0" maxOccurs="1" type="CommandSaveAsElement" />
+										<xs:element name="DefaultProcess" minOccurs="0" maxOccurs="1" type="CommandDefaultProcessElement" />
+										<xs:element name="CreateConnectResult" minOccurs="0" maxOccurs="1" type="CommandCreateConnectResultElement" />
+										<xs:element name="ConvertToPdf" minOccurs="0" maxOccurs="1" type="CommandConvertToPdfElement" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OnExit">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="SaveAs" minOccurs="0" maxOccurs="1" type="CommandSaveAsElement" />
+										<xs:element name="DefaultProcess" minOccurs="0" maxOccurs="1" type="CommandDefaultProcessElement" />
+										<xs:element name="CreateConnectResult" minOccurs="0" maxOccurs="1" type="CommandCreateConnectResultElement" />
+										<xs:element name="ConvertToPdf" minOccurs="0" maxOccurs="1" type="CommandConvertToPdfElement" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OnCancel">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="SaveAs" minOccurs="0" maxOccurs="1" type="CommandSaveAsElement" />
+										<xs:element name="DefaultProcess" minOccurs="0" maxOccurs="1" type="CommandDefaultProcessElement" />
+										<xs:element name="CreateConnectResult" minOccurs="0" maxOccurs="1" type="CommandCreateConnectResultElement" />
+										<xs:element name="ConvertToPdf" minOccurs="0" maxOccurs="1" type="CommandConvertToPdfElement" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Data / Forms Element Types -->
+
+	<xs:complexType name="ValueElement">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Key" type="xs:string" use="required" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="ObjectElement">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="Value" type="ValueElement" />
+		</xs:sequence>
+		<xs:attribute name="Key" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ObjectCollectionElement">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="Item">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="Value" type="ValueElement" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Key" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<!-- Command Types -->
+
+	<xs:complexType name="CommandSaveAsElement">
+		<xs:attribute name="Filename" type="xs:string" use="required" />
+		<xs:attribute name="Overwrite" type="xs:boolean" use="optional" />
+		<xs:attribute name="CreateFolder" type="xs:boolean" use="optional" />
+		<xs:attribute name="CopyOnly" type="xs:boolean" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="CommandDefaultProcessElement">
+		<xs:attribute name="Start" type="xs:boolean" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="CommandCreateConnectResultElement">
+	</xs:complexType>
+
+	<xs:complexType name="CommandConvertToPdfElement">
+	</xs:complexType>
+</xs:schema>
