@@ -273,7 +273,7 @@ namespace PrimeDocs.ConnectClient.WinApp.ViewModel
                 dial = new ResponseWindow();
                 fail.ServerStatus.Text = "Uri not found";
                 values.ResponseEntry = new Response() { StatusCode = "Unexpected Error" };
-                fail.Details.Text = "An unexpected error has occured while trying to create the temp .oocx file. Please check the XML syntax of your content input.";
+                fail.Details.Text = "An unexpected error has occured while trying to create the temp .pdcx file. Please check the XML syntax of your content input.";
                 dial.Content = fail;
                 dial.Height = 300;
                 dial.Width = 300;
@@ -739,7 +739,7 @@ namespace PrimeDocs.ConnectClient.WinApp.ViewModel
                 string[] files = (string[])drgevent.Data.GetData(DataFormats.FileDrop);
                 if (files.Count() == 1)
                 {
-                    if (System.IO.Path.GetExtension(files[0]) == ".xml" || System.IO.Path.GetExtension(files[0]) == ".txt" || System.IO.Path.GetExtension(files[0]) == ".oocx" || System.IO.Path.GetExtension(files[0]) == ".oock")
+                    if (System.IO.Path.GetExtension(files[0]) == ".xml" || System.IO.Path.GetExtension(files[0]) == ".txt" || System.IO.Path.GetExtension(files[0]) == ".pdcx" || System.IO.Path.GetExtension(files[0]) == ".pdck")
                         return DragDropEffects.Move;
                     else
                         return DragDropEffects.None;
