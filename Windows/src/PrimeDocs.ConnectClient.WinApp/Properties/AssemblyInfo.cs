@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("primedocs Connect Client")]
 [assembly: AssemblyDescription("Test Client for primedocs Connect")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("PrimeSoft Group AG")]
+[assembly: AssemblyCompany("ProfiSoft Group AG")]
 [assembly: AssemblyProduct("PrimeDocs.ConnectClient.WinApp")]
-[assembly: AssemblyCopyright("Copyright © PrimeSoft Group AG")]
+[assembly: AssemblyCopyright("Copyright © ProfiSoft Group AG")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
